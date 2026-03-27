@@ -1,0 +1,78 @@
+
+body{
+    background-color: rgb(255, 255, 245);
+}
+
+h1{
+    place-self: center;
+    margin-top: 180px;
+    font-family: sans-serif;
+}
+
+p{
+    font-family: sans-serif;
+}
+
+#divLogin{
+    place-self: center;
+}
+
+#divCredenciales{
+    display: grid;
+    border-color: gray;
+    border-style: solid;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.3);
+    width: 270px;
+    height: 250px;
+    place-content: center;
+
+}
+
+.inputCredenciales{
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    height: 20px;
+}
+
+#ingresarBtn{
+    width: 100px;
+    height: 30px;
+    background-color: rgb(23, 62, 67);
+    font-family: sans-serif;
+    color: white;
+    place-self: center;
+    border-radius: 10px;
+    border-style:hidden;
+    margin-top: 25px;
+}
+
+#noCuenta{
+    font-family: sans-serif;
+    font-size: 85%;
+    margin-top: 15px;
+}
+
+#navBar{
+    display: flex;
+    width: 50%;
+    height: 80px;
+    background-color: white;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.3);
+    border-style:hidden;
+    border-radius: 15px;
+    place-self: center;
+    place-content: center;
+}
+
+.opcionesNavBar{
+    display:inline-flex;
+    flex-direction: column;
+    font-family: sans-serif;
+    color:black;
+    text-decoration: none;
+    margin: 30px 30px 30px 20px;
+    
+}
+
