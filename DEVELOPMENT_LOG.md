@@ -16,7 +16,7 @@ Fecha: 28/03/2026
 *Se crea el archivo server.ts que contiene la importación de configuración de express, cors y la instancia (objeto) de la clase Config (correspondiente al patrón Singleton)
 *Se añade  la constante app para usar express y cors. A demás se crea el primer endpoint de prueba ('/') para encender la API con app.get en local
 *Se crea un archivo tsconfig.json que contiene información sobre el compilador para la traducción de TS a JS en su versión 2022, así como verificaciones de seguridad para evitar dejar alguna variable sin tipo (strict:true)
-*Se instala la herramienta JSDocs para la documentación del código: npm install -D jsdoc jsdoc-babel @babel/core @babel/preset-env @babel/preset-typescript
+*Se instala la herramienta JSDocs para la documentación del código: npm install -D jsdoc clean-jsdoc-theme
 
 
 

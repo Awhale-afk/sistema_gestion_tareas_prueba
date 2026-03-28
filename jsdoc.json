@@ -1,0 +1,16 @@
+{
+    "source": {
+        "include": ["temp_js"],
+        "includePattern": ".+\\.js$",
+        "excludePattern": "(^|\\/|\\\\)node_modules"
+    },
+    "plugins": ["plugins/markdown"],
+    "opts": {
+        "destination": "./docs",
+        "recurse": true,
+        "template": "node_modules/clean-jsdoc-theme"
+    },
+    "theme_opts": {
+        "theme": "dark"
+    }
+}

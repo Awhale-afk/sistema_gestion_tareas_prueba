@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+    "target": "ES2022",             //Versión a la que se va a traducir el TS//
+    "module": "NodeNext",           //Versión más actual para funciones de Node//
+    "moduleResolution": "NodeNext", 
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "strict": true
+    },
+    //Validar que archivos deben ser leidos y traducidos por el compilador de TypeScript a JavaScript//
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"]
+}
