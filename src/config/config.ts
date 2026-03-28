@@ -1,4 +1,6 @@
-/**Busca credenciales, API keys, entre otras cosas del .env// Se importa la librería dotenv desde el archivo dotenv de node_modules*/
+/**@module Configuración */
+
+/** @ignore Busca credenciales, API keys, entre otras cosas del .env// Se importa la librería dotenv desde el archivo dotenv de node_modules*/
 import dotenv from 'dotenv'; 
 
 
