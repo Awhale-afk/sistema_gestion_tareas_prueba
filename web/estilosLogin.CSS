@@ -36,7 +36,7 @@ p{
     height: 20px;
 }
 
-#ingresarBtn{
+#ingresarBtn, #registrarme{
     width: 100px;
     height: 30px;
     background-color: rgb(23, 62, 67);
@@ -46,6 +46,13 @@ p{
     border-radius: 10px;
     border-style:hidden;
     margin-top: 25px;
+    transition: transform 0.3s ease;
+    
+}
+
+#ingresarBtn:hover{ /*Animación de botón*/
+    transform: scale(1.1);
+    
 }
 
 #noCuenta{
@@ -76,3 +83,16 @@ p{
     
 }
 
+.opcionesNavBar::after{         /*Animación de barra debajo de opciones de barra de navegación*/
+    content: "";
+    width: 100%;
+    height: 2px;
+    background-color:rgb(23, 62, 67);
+    transform: scaleX(0);
+    transition: transform 0.3s ease-out;
+}
+
+.opcionesNavBar:hover::after{ /*Activación de la animación*/
+    transform: scaleX(1);
+    transform: pointer;
+}
