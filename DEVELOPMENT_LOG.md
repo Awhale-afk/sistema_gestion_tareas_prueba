@@ -12,12 +12,21 @@ Fecha: 27/03/2026
 *Se escribe el archivo de configuración con patrón Singleton para la creación de la clase con los datos de puerto, url de la base de datos y tokens
 
 Fecha: 28/03/2026
+
 *Se crea el archivo server.ts que contiene la importación de configuración de express, cors y la instancia (objeto) de la clase Config (correspondiente al patrón Singleton)
 *Se añade  la constante app para usar express y cors. A demás se crea el primer endpoint de prueba ('/') para encender la API con app.get en local
 *Se crea un archivo tsconfig.json que contiene información sobre el compilador para la traducción de TS a JS en su versión 2022, así como verificaciones de seguridad para evitar dejar alguna variable sin tipo (strict:true)
+*Se instala la herramienta JSDocs para la documentación del código: npm install -D jsdoc jsdoc-babel @babel/core @babel/preset-env @babel/preset-typescript
 
 
 
 -Uso de la IA:
 *Se le pide explicación sobre el uso de @types dado que no lo conocía. Prompt: Explícame mejor lo de los paquetes de definiciones de tipos. Ese es el nombre técnico? Y en palabras simples que son? Diccionarios para convertir instrucciones de express y node (originalmente diseñadas para Js) a Typescript?
 No se añadió código dado que solo fue una ampliación de conocimiento.
+*Me encuentro con un error de compilación a la hora de encender la API en el endpoint de prueba. La solución que propone la IA (Gemini en este caso) es la creación de un archivo .json para escribir los parámetros que necesita el compilador para traducir de TypeScript a JavaScript. Después de hacer una búsqueda en Stack Overflow, entendí que los ajustes propuestos por Gemini son compatibles con el proyecto y ayudarían a reducir problemas posteriores. Por lo tanto se hizo el cambio propuesto en el archivo tsconfig.json
+Error: 
+[ERROR] 13:26:51 ⨯ Unable to compile TypeScript:
+error TS5107: Option 'moduleResolution=node10' is deprecated and will stop functioning in TypeScript 7.0. Specify compilerOption '"ignoreDeprecations": "6.0"' to silence this error.
+  Visit https://aka.ms/ts6 for migration information.
+error TS5109: Option 'moduleResolution' must be set to 'NodeNext' (or left unspecified) when option 'module' is set to 'NodeNext'
+Solución: Se especifica la versión de JavaScript a la que va a ser traducido (2022), y el valor de module y moduleResolution a NodeNext
