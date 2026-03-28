@@ -30,6 +30,6 @@ app.get('/', (req: Request, res: Response) => {     //Enpoint de prueba para enc
 });
 
 app.listen(PORT, () =>{
-    console.log(`Corriendo en: " + http://localhost:${PORT}`)
+    console.log(`Corriendo en: http://localhost:${PORT}`)
 });
 
