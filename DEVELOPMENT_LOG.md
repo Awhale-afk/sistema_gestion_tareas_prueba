@@ -18,6 +18,8 @@ Fecha: 28/03/2026
 *Se crea un archivo tsconfig.json que contiene información sobre el compilador para la traducción de TS a JS en su versión 2022, así como verificaciones de seguridad para evitar dejar alguna variable sin tipo (strict:true)
 *Se instala la herramienta JSDocs para la documentación del código: npm install -D jsdoc clean-jsdoc-theme
 *Hubo varios errores de compatibilidad con la herramienta y también a la hora de organizar la información de los comentarios en la documentación de la web que generaba, se resolvió aplicando etiquetas @ dentro de los items que se querían mostrar en los módulos
+*Se crea la base de datos gestion_tareas_database con AWS en Neon.tech
+*Se instala la librería pg para poder hacer consultas SQL a postgreSQL con: npm install pg && npm install -D @types/pg
 
 
 
