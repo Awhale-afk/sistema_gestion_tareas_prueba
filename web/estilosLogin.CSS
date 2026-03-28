@@ -50,7 +50,7 @@ p{
     
 }
 
-#ingresarBtn:hover{ /*Animación de botón*/
+#ingresarBtn:hover, #registrarme:hover{ /*Animación de botón*/
     transform: scale(1.1);
     
 }
