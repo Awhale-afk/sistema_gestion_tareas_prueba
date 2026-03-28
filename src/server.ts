@@ -10,13 +10,14 @@ import express, {Application, Request, Response} from 'express';
 import cors from 'cors';        
 
  // Se importa la constante config que contiene la instancia (objeto) de la clase Config en el archivo config.ts */
-import {config} from './config/config.js' 
+import {config} from './config/config' 
 const app: Application = express();
 const PORT = config.PORT;
 
 app.use(express.json());
 /**Pemite las peticiones HTTP de lugares externos a la API
  * @public
+ * @name Middlewares_Globales
  * @function
  * @memberof module:Servidor
 */
