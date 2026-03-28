@@ -30,3 +30,5 @@ error TS5107: Option 'moduleResolution=node10' is deprecated and will stop funct
   Visit https://aka.ms/ts6 for migration information.
 error TS5109: Option 'moduleResolution' must be set to 'NodeNext' (or left unspecified) when option 'module' is set to 'NodeNext'
 Solución: Se especifica la versión de JavaScript a la que va a ser traducido (2022), y el valor de module y moduleResolution a NodeNext
+*Se le pide a Gemini que revise la estructura de las rutas como medida preventiva para estar seguro antes de continuar con la creación de las rutas y controladores. 
+Prompt: Antes de empezar con los controladores y rutas, revisa la estructura de carpetas y archivos que tengo para evitar algún inconveniente
