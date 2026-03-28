@@ -9,3 +9,9 @@ Fecha: 27/03/2026
 *Se preparó la estructura de carpetas con mkdir -Path "src/api/routes", "src/api/middlewares", "src/controllers", "src/services", "src/persistence", "src/config", "src/utils", "src/models"
 *Se inició node y se instaló express por medio de npm init -y y npm install express dotenv cors
 *Se instalaron las dependencias de desarrollo en el proyecto (Typescript) y definiciones de tipos (como "traductor" para typescript con respecto a express) con npm install -D typescript ts-node-dev @types/express @types/node @types/cors
+*Se escribe el archivo de configuración con patrón Singleton para la creación de la clase con los datos de puerto, url de la base de datos y tokens
+
+
+-Uso de la IA:
+*Se le pide explicación sobre el uso de @types dado que no lo conocía. Prompt: Explícame mejor lo de los paquetes de definiciones de tipos. Ese es el nombre técnico? Y en palabras simples que son? Diccionarios para convertir instrucciones de express y node (originalmente diseñadas para Js) a Typescript?
+No se añadió código dado que solo fue una ampliación de conocimiento.
