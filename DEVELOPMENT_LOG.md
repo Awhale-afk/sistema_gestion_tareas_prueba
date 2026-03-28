@@ -10,6 +10,7 @@ Fecha: 27/03/2026
 *Se inició node y se instaló express por medio de npm init -y y npm install express dotenv cors
 *Se instalaron las dependencias de desarrollo en el proyecto (Typescript) y definiciones de tipos (como "traductor" para typescript con respecto a express) con npm install -D typescript ts-node-dev @types/express @types/node @types/cors
 *Se escribe el archivo de configuración con patrón Singleton para la creación de la clase con los datos de puerto, url de la base de datos y tokens
+*Se crea el archivo server.ts que contiene la importación de configuración de express, cors y la instancia (objeto) de la clase Config (correspondiente al patrón Singleton)
 
 
 -Uso de la IA:
