@@ -1,14 +1,14 @@
-/**@module Configuración */
+/**@module Configuracion */
 
-/** @ignore 
- * Busca credenciales, API keys, entre otras cosas del .env// Se importa la librería dotenv desde el archivo dotenv de node_modules*/
+
+//Busca credenciales, API keys, entre otras cosas del .env// Se importa la librería dotenv desde el archivo dotenv de node_modules*/
 import dotenv from 'dotenv'; 
 
 
 /**La clase Config establece que datos se deben buscar y que de que tipo son. 
 Están programados para SOLO lectura, no se pueden modificar por fuera de la clase
-@class Config
-@memberof module:Configuración*/
+@class 
+*/
 
 class Config{
     
@@ -16,23 +16,23 @@ class Config{
     /**Configuración del puerto del servidor 
      * @readonly
      * @type {number}
-     * @instance
-     * @memberof Config
+     * @public
+     * @memberof module:Configuracion
      */
     public readonly PORT: number;
     /**Configuración de la dirección URL de la base de datos 
      * @readonly
      * @type {string}
-     * @instance
-     * @memberof Config
+     * @public
+     * @memberof module:Configuracion
      */
     public readonly DB_URL: string;
     /**Configuración del token 
      * @readonly
      * @type {string}
-     * @instance
-     * @memberof Config
-     */
+     * @public
+     * @memberof module:Configuracion
+    */
     public readonly TOKEN: string;
 
     private constructor(){

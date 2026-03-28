@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "start": "node dist/server.ts",
-    "docs":"rd /s /q docs && tsc --outDir temp_js && jsdoc temp_js -r -c jsdoc.json -d docs && rd /s /q temp_js"
+    "docs":"(if exist docs rd /s /q docs) && (if exist temp_js rd /s /q temp_js) && tsc --outDir temp_js && jsdoc -c jsdoc.json && (if exist temp_js rd /s /q temp_js)"
   },
   "repository": {
     "type": "git",
