@@ -23,6 +23,17 @@ Fecha: 28/03/2026
 *Se instala swagger para la documentación de endpoints con npm install swagger-ui-express swagger-jsdoc y la "traducción" de TypeScript con npm install -D @types/swagger-ui-express @types/swagger-jsdoc
 *Se configura swagger en src/config/swagger.ts
 
+Fecha 29/03/2026
+*Creación de tabla de tareas en PostgreSQL y controlador de tareas (tasksController.ts) para procesar la lógica
+
+
+
+
+
+
+
+
+
 
 
 -Uso de la IA:
