@@ -25,7 +25,8 @@ export const seeTask = async (req: Request, res: Response) =>{
     try{
         const {user_id} = req.body;
         const getTask = await pool.query(
-            `SELECT * FROM tasks WHERE user_id = $1;`
+            `SELECT * FROM tasks WHERE user_id = $1;`,
+            [user_id]
         )
         return res.status(201).json(getTask.rows[0])
     }catch (error){
