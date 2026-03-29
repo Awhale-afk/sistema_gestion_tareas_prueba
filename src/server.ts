@@ -14,6 +14,9 @@ import cors from 'cors';
 
 import authRoutes from './api/routes/authRoutes'
 
+import swaggerUi from 'swagger-ui-express';
+import { swaggerDocs } from './config/swagger';
+
  // Se importa la constante config que contiene la instancia (objeto) de la clase Config en el archivo config.ts */
 import {config} from './config/config' 
 const app: Application = express();

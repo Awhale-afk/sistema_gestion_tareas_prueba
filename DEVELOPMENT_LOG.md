@@ -20,6 +20,8 @@ Fecha: 28/03/2026
 *Hubo varios errores de compatibilidad con la herramienta y también a la hora de organizar la información de los comentarios en la documentación de la web que generaba, se resolvió aplicando etiquetas @ dentro de los items que se querían mostrar en los módulos
 *Se crea la base de datos gestion_tareas_database con AWS en Neon.tech
 *Se instala la librería pg para poder hacer consultas SQL a postgreSQL con: npm install pg && npm install -D @types/pg
+*Se instala swagger para la documentación de endpoints con npm install swagger-ui-express swagger-jsdoc y la "traducción" de TypeScript con npm install -D @types/swagger-ui-express @types/swagger-jsdoc
+*Se configura swagger en src/config/swagger.ts
 
 
 
