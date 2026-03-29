@@ -24,7 +24,7 @@ Fecha: 28/03/2026
 *Se configura swagger en src/config/swagger.ts
 
 Fecha 29/03/2026
-*Creación de tabla de tareas en PostgreSQL y controlador de tareas (tasksController.ts) para procesar la lógica
+*Creación de tabla de tareas en PostgreSQL y controlador de tareas (tasksController.ts) para procesar la lógica del registro, obtención, borrado y modificación de las mismas.
 
 
 

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createTask } from "../../controllers/tasksController";
+import { createTask, seeTask } from "../../controllers/tasksController";
 
 const router = Router();
 
@@ -39,5 +39,27 @@ const router = Router();
 
 /**@name POST/api/tasks */
 router.post('/createTask', createTask)
+/**
+ * @swagger
+ * /api/tasks/{userId}:
+ * ..get:
+ * ....summary: Obtener todas las tareas de un usuario
+ * ....tags: [Tareas]
+ * ....parameters:
+ * ......- in: path
+ * ........name: userId
+ * ........required: true
+ * ........schema:
+ * ..........type: integer
+ * ........description: ID del usuario (ej. 6)
+ * ....responses:
+ * ......200:
+ * ........description: Lista de tareas encontrada
+ * ......500:
+ * ........description: Error del servidor
+ */
+
+router.get('/:user_id', seeTask);
+
 
 export default router;
