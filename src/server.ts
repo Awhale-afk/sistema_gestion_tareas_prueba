@@ -6,6 +6,9 @@ Viene de node_modules/@types/express/index.ts/linea 42-44.
 Se puede acceder a ellos con Ctrl + click en los parámetros {}*/
 import express, {Application, Request, Response} from 'express'; 
 
+//Importa la constante que hace la conexión a la DB//
+import { testConnection } from './persistence/databaseConnection';
+
 //Importa configuraciones sobre las conexiones para tener control sobre peticiones HTTP que vengan de un lugar diferente al que tiene la API (Puerto, Dominio url y protocolo (http))*/
 import cors from 'cors';        
 
@@ -29,7 +32,8 @@ app.get('/', (req: Request, res: Response) => {     //Enpoint de prueba para enc
 
 });
 
-app.listen(PORT, () =>{
-    console.log(`Corriendo en: http://localhost:${PORT}`)
+app.listen(PORT, async () =>{
+    console.log(`Corriendo en: http://localhost:${PORT}`);
+    await testConnection();
 });
 
