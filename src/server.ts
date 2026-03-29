@@ -1,5 +1,4 @@
 /**@module Servidor */
-
 /* Importa configuraciones de node modules/"@types" (Es decir @types/express @types/node @types/cors) 
 como "traductores" para Typescript.
 Viene de node_modules/@types/express/index.ts/linea 42-44.
@@ -11,14 +10,16 @@ import { testConnection } from './persistence/databaseConnection';
 
 //Importa configuraciones sobre las conexiones para tener control sobre peticiones HTTP que vengan de un lugar diferente al que tiene la API (Puerto, Dominio url y protocolo (http))*/
 import cors from 'cors';    
-
-
-
 import swaggerUi from 'swagger-ui-express';
 import { swaggerDocs } from './config/swagger';
 
  // Se importa la constante config que contiene la instancia (objeto) de la clase Config en el archivo config.ts */
 import {config} from './config/config' 
+
+
+
+
+
 const app: Application = express();
 const PORT = config.PORT;
 
@@ -36,8 +37,11 @@ app.use(cors());
 import authRoutes from './api/routes/authRoutes'
 app.use('/api/auth', authRoutes)
 
+import taskRoutes from './api/routes/tasksRoutes';
+app.use('/api/tasks', taskRoutes);
 
-app.get('/', (req: Request, res: Response) => {     //Enpoint de prueba para encender la API//
+
+app.get('/', (req: Request, res: Response) => {     //Enpoint de prueba para encender la API en local//
     res.json({message: "API encendida"})
 
 });
