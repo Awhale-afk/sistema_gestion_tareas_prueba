@@ -12,7 +12,7 @@ import { testConnection } from './persistence/databaseConnection';
 //Importa configuraciones sobre las conexiones para tener control sobre peticiones HTTP que vengan de un lugar diferente al que tiene la API (Puerto, Dominio url y protocolo (http))*/
 import cors from 'cors';    
 
-import authRoutes from './api/routes/authRoutes'
+
 
 import swaggerUi from 'swagger-ui-express';
 import { swaggerDocs } from './config/swagger';
@@ -22,6 +22,8 @@ import {config} from './config/config'
 const app: Application = express();
 const PORT = config.PORT;
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
 app.use(express.json());
 /**Pemite las peticiones HTTP de lugares externos a la API
  * @public
@@ -30,6 +32,9 @@ app.use(express.json());
  * @memberof module:Servidor
 */
 app.use(cors());
+
+import authRoutes from './api/routes/authRoutes'
+app.use('/api/auth', authRoutes)
 
 
 app.get('/', (req: Request, res: Response) => {     //Enpoint de prueba para encender la API//
