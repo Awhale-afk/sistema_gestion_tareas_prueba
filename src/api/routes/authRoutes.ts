@@ -45,9 +45,9 @@ router.post('/register', register)
 
 /**
  * @swagger
- * /api/auth/register:
+ * /api/auth/login:
  *  post:
- *      summary: Registrar un nuevo usuario
+ *      summary: Iniciar sesión en una cuenta
  *      tags: [Autenticación]
  *      requestBody:
  *          required: true
@@ -66,8 +66,8 @@ router.post('/register', register)
  *                         type: string
  *                         example: password123
  *      responses:
- *          201:
- *              description: Usuario creado exitosamente
+ *          200:
+ *              description: Sesión iniciada
  *          400:
  *              description: Datos inválidos
  *          500:
