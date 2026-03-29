@@ -10,7 +10,9 @@ import express, {Application, Request, Response} from 'express';
 import { testConnection } from './persistence/databaseConnection';
 
 //Importa configuraciones sobre las conexiones para tener control sobre peticiones HTTP que vengan de un lugar diferente al que tiene la API (Puerto, Dominio url y protocolo (http))*/
-import cors from 'cors';        
+import cors from 'cors';    
+
+import authRoutes from './api/routes/authRoutes'
 
  // Se importa la constante config que contiene la instancia (objeto) de la clase Config en el archivo config.ts */
 import {config} from './config/config' 
@@ -36,4 +38,6 @@ app.listen(PORT, async () =>{
     console.log(`Corriendo en: http://localhost:${PORT}`);
     await testConnection();
 });
+
+
 
