@@ -5,6 +5,8 @@ import * as UserRepository from '../persistence/userRepository';
  * Registro de usuario
  * @function register
  */
+
+//POST//
 export const register = async (req: Request, res: Response) => {
     try{
         const {username, email, password} = req.body;
