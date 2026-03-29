@@ -42,6 +42,38 @@ const router = Router();
 
 /**@name POST/api/auth/register */
 router.post('/register', register)
+
+/**
+ * @swagger
+ * /api/auth/register:
+ *  post:
+ *      summary: Registrar un nuevo usuario
+ *      tags: [Autenticación]
+ *      requestBody:
+ *          required: true
+ *          content:
+ *             application/json:
+ *                 schema:
+ *                    type: object
+ *                    required:
+ *                        - email
+ *                        - password
+ *                    properties:
+ *                      email:
+ *                         type: string
+ *                         example: emmanuel20@correo.com
+ *                      password:
+ *                         type: string
+ *                         example: password123
+ *      responses:
+ *          201:
+ *              description: Usuario creado exitosamente
+ *          400:
+ *              description: Datos inválidos
+ *          500:
+ *              description: Error del servidor
+ */
+
 router.post('/login', login)
 
 export default router;
