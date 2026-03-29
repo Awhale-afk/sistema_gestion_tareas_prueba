@@ -42,5 +42,6 @@ const router = Router();
 
 /**@name POST/api/auth/register */
 router.post('/register', register)
+//router.post('/login')//
 
 export default router;
