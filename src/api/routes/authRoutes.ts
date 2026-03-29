@@ -73,7 +73,7 @@ router.post('/register', register)
  *          500:
  *              description: Error del servidor
  */
-
+/**@name POST/api/auth/login */
 router.post('/login', login)
 
 export default router;
