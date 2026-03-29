@@ -39,6 +39,7 @@ const router = Router();
 
 /**@name POST/api/tasks */
 router.post('/createTask', createTask)
+
 /**
  * @swagger
  * /api/tasks/{userId}:
@@ -50,12 +51,12 @@ router.post('/createTask', createTask)
  *      name: userId
  *      required: true
  *      schema:
- *      type: integer
+ *       type: integer
  *      description: ID del usuario (6)
  *    responses:
- *         200:
+ *     200:
  *      description: Lista de tareas encontrada
- *         500:
+ *     500:
  *      description: Error del servidor
  */
 
