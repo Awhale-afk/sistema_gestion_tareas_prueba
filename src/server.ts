@@ -11,6 +11,7 @@ import { testConnection } from './persistence/databaseConnection';
 //Importa configuraciones sobre las conexiones para tener control sobre peticiones HTTP que vengan de un lugar diferente al que tiene la API (Puerto, Dominio url y protocolo (http))*/
 import cors from 'cors';    
 import swaggerUi from 'swagger-ui-express';
+import path from 'path'
 import { swaggerDocs } from './config/swagger';
 
  // Se importa la constante config que contiene la instancia (objeto) de la clase Config en el archivo config.ts */
@@ -39,6 +40,25 @@ app.use('/api/auth', authRoutes)
 
 import taskRoutes from './api/routes/tasksRoutes';
 app.use('/api/tasks', taskRoutes);
+
+app.use(express.static(path.join(__dirname, '../web')));
+
+
+//Ruta para el Login//
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, '../web/login.html'));
+});
+
+//Ruta para el Registro//
+app.get('/registro', (req, res) => {
+    res.sendFile(path.join(__dirname, '../web/registro.html'));
+});
+
+//
+app.get('/', (req: Request, res: Response) => {
+    res.redirect('/login');
+});
+
 
 
 app.get('/', (req: Request, res: Response) => {     //Enpoint de prueba para encender la API en local//
