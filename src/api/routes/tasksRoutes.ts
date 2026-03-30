@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { createTask, seeTask, deleteTask, modifyTask } from "../../controllers/tasksController";
+import { authenticateToken } from '../middlewares/authMiddleware';
 
 const router = Router();
 
@@ -44,23 +45,26 @@ router.post('/createTask', createTask)
  * @swagger
  * /api/tasks/{user_id}:
  *   get:
- *     summary: Obtener todas las tareas de un usuario
+ *     summary: Obtener todas las tareas de un usuario (Por medio de una autorización de token web)
  *     tags: [Tareas]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: user_id
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID del usuario (6)
  *     responses:
  *       200:
- *         description: Lista de tareas encontrada
- *       500:
- *         description: Error del servidor
+ *         description: Lista de tareas
+ *       401:
+ *         description: No autorizado (Falta token)
+ *       403:
+ *         description: Token inválido o expirado
  */
 
-router.get('/:user_id', seeTask);
+router.get('/:user_id', authenticateToken, seeTask);
 
 /**
  * @swagger

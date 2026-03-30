@@ -2,6 +2,7 @@ import {Request, Response} from 'express';
 import * as UserRepository from '../persistence/userRepository';
 import { pool } from '../persistence/databaseConnection';
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 /**
  * Registro de usuario
@@ -64,10 +65,16 @@ export const login = async (req: Request, res: Response) => {
         if (!isMatch) {
             return res.status(401).json({ message: "Credenciales inválidas" });
         }
+        const token = jwt.sign(
+            { id: user.id, email: user.email }, // Datos que viajan dentro del token (Payload)
+            process.env.JWT_SECRET as string,    // La llave secreta
+            { expiresIn: '1h' }                  // Tiempo de vida del token
+);
 
         //Respuesta exitosa//
         return res.status(200).json({
-            message: "¡Bienvenido, login exitoso!",
+            message: "Bienvenido",
+            token: token,
             user: {
                 id: user.id,
                 username: user.username,
