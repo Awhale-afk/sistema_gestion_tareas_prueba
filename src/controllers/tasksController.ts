@@ -23,12 +23,12 @@ export const createTask = async (req: Request, res: Response) =>{
 
 export const seeTask = async (req: Request, res: Response) =>{
     try{
-        const {user_id} = req.body;
+        const {user_id} = req.params;
         const getTask = await pool.query(
             `SELECT * FROM tasks WHERE user_id = $1;`,
             [user_id]
         )
-        return res.status(201).json(getTask.rows[0])
+        return res.status(200).json(getTask.rows[0])
     }catch (error){
         console.error("Error. No se pudieron consultar las tareas ", error);
         return res.status(500).json({message:"Error del servidor"});

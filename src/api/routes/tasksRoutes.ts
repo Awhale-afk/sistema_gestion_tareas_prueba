@@ -42,22 +42,22 @@ router.post('/createTask', createTask)
 
 /**
  * @swagger
- * /api/tasks/{userId}:
- *  get:
- *    summary: Obtener todas las tareas de un usuario
- *    tags: [Tareas]
- *    parameters:
- *      - in: path
- *      name: userId
- *      required: true
- *      schema:
- *       type: integer
- *      description: ID del usuario (6)
- *    responses:
- *     200:
- *      description: Lista de tareas encontrada
- *     500:
- *      description: Error del servidor
+ * /api/tasks/{user_id}:
+ *   get:
+ *     summary: Obtener todas las tareas de un usuario
+ *     tags: [Tareas]
+ *     parameters:
+ *       - in: path
+ *         name: user_id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID del usuario (6)
+ *     responses:
+ *       200:
+ *         description: Lista de tareas encontrada
+ *       500:
+ *         description: Error del servidor
  */
 
 router.get('/:user_id', seeTask);
