@@ -61,7 +61,7 @@ router.post('/register', register)
  *                    properties:
  *                      email:
  *                         type: string
- *                         example: emmanuel20@correo.com
+ *                         example: emmanuel@correo.com
  *                      password:
  *                         type: string
  *                         example: password123
