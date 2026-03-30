@@ -32,6 +32,8 @@ npm install --save-dev @types/jsonwebtoken
 *Envío de datos desde front (registro.html) al back (Base de datos)
 
 Fecha 30/03/2026
+*Se referencian los endpoints en los archivos html para navegar hacia ellos desde la navbar dentro de las etiquedas <a href="">
+
 
 
 
