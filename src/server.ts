@@ -54,7 +54,7 @@ app.get('/registro', (req, res) => {
     res.sendFile(path.join(__dirname, '../web/registro.html'));
 });
 
-//
+//Ruta que redirige el enpoint por defecto al login//
 app.get('/', (req: Request, res: Response) => {
     res.redirect('/login');
 });
