@@ -22,7 +22,7 @@ export const register = async (req: Request, res: Response) => {
         }
 
         //Encriptación de la contraseña con bcrypt//
-        // Indica cuántas veces se procesa la encriptación//
+        //Indica cuántas veces se procesa la encriptación//
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -42,6 +42,11 @@ export const register = async (req: Request, res: Response) => {
         return res.status(500).json({ message: "Error interno del servidor" });
     }
 };
+
+/**
+ * Login de usuario
+ * @function login
+ */
 
 //POST//
 
@@ -66,9 +71,9 @@ export const login = async (req: Request, res: Response) => {
             return res.status(401).json({ message: "Credenciales inválidas" });
         }
         const token = jwt.sign(
-            { id: user.id, email: user.email }, // Datos que viajan dentro del token (Payload)
-            process.env.JWT_SECRET as string,    // La llave secreta
-            { expiresIn: '1h' }                  // Tiempo de vida del token
+            { id: user.id, email: user.email }, //Datos dentro del token (Payload)
+            process.env.JWT_SECRET as string,    //Procesa el token generado como string//
+            { expiresIn: '1h' }                  //Tiempo de existencia del token//
 );
 
         //Respuesta exitosa//
@@ -86,4 +91,35 @@ export const login = async (req: Request, res: Response) => {
         console.error("Error en el login:", error);
         return res.status(500).json({ message: "Error interno del servidor" });
     }
+};
+
+/**
+ * Borrado de usuario
+ * @function deleteById
+ */
+
+export const deleteById = async (req: Request, res: Response) =>{
+   try{
+        const {id} = req.params
+    //Verifica si existe el usuario para ser borrado//
+        const userExists = await pool.query(`
+        SELECT * FROM users WHERE id = $1`,
+        [id])
+        
+            if (userExists.rows.length === 0) {
+                return res.status(404).json({message: "El usuario que intenta eliminar no existe"})
+            };
+
+            
+        const userDeletion = await pool.query(`
+        DELETE FROM users WHERE id = $1`,
+        [id])
+        return res.status(200).json({message: "Usuario eliminado con éxito: ", userDeletion})
+
+
+   }catch (error){
+    console.error("Error del servidor al intentar borrar", error);
+    return res.status(500).json({message: "Error interno del servidor"});
+   } 
+    
 };
