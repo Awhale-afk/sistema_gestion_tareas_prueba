@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {register, login, deleteById} from '../../controllers/authController';
+import {register, login, deleteById, generalGet} from '../../controllers/authController';
 import { authenticateToken } from "../middlewares/authMiddleware";
 
 const router = Router();
@@ -39,8 +39,6 @@ const router = Router();
  *          500:
  *              description: Error del servidor
  */
-
-
 /**@name POST/api/auth/register */
 router.post('/register', register)
 
@@ -92,12 +90,12 @@ router.post('/login', login)
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID numérico del usuario a eliminar
+ *         description: ID del usuario a eliminar
  *     responses:
  *       200:
  *         description: Usuario eliminado con éxito
  *       401:
- *         description: No autorizado (Falta el token de acceso)
+ *         description: No autorizado (Falta el token)
  *       403:
  *         description: Token inválido o expirado
  *       404:
@@ -105,10 +103,35 @@ router.post('/login', login)
  *       500:
  *         description: Error interno del servidor
  */
-
 /**@name DELETE/api/auth/deleteById */
-router.delete('/deleteById/id:', authenticateToken, deleteById)
+router.delete('/deleteById/:id', authenticateToken, deleteById)
 
 
+/**
+ * @swagger
+ * /api/auth/generalGet:
+ *   get:
+ *     summary: Obtener la lista completa de usuarios
+ *     tags: [Autenticación]
+ *     responses:
+ *       200:
+ *         description: Consulta exitosa de todos los usuarios
+ *         content:
+ *           application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *                obtainUsers:
+ *                  type: object
+ *       404:
+ *         description: No se encontraron usuarios en la base de datos
+ *       500:
+ *         description: Error interno del servidor al procesar la consulta
+ */
+
+/**@name GET/api/auth/generalGet */
+router.get('/generalGet', generalGet)
 
 export default router;

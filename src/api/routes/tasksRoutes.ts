@@ -131,10 +131,9 @@ router.delete('/:id', deleteTask);
  *       500:
  *         description: Error interno del servidor
  */
-
-
-
+/**@name PUT/api/tasks */
 router.put('/', modifyTask)
+
 
 
 export default router;

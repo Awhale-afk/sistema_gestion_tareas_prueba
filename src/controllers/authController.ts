@@ -97,6 +97,7 @@ export const login = async (req: Request, res: Response) => {
  * Borrado de usuario
  * @function deleteById
  */
+//DELETE//
 
 export const deleteById = async (req: Request, res: Response) =>{
    try{
@@ -122,4 +123,26 @@ export const deleteById = async (req: Request, res: Response) =>{
     return res.status(500).json({message: "Error interno del servidor"});
    } 
     
+};
+
+/**
+ * Obtención de todos los usuarios
+ * @function generalGet
+*/
+
+//GET//
+
+export const generalGet = async (req: Request, res: Response) =>{
+    try{
+        const obtainUsers = await pool.query(`
+            SELECT id, username, email, created_at FROM users`)
+            if (obtainUsers.rows.length === 0){
+                return res.status(404).json({message: "No existen usuarios en la base de datos"})
+            }
+
+        return res.status(200).json({message: "Consulta exitosa. Mostrando registros: ", obtainUsers})
+    }catch (error){
+        console.error("Error del servidor al consultar", error)
+        return res.status(500).json({message: "No se pudo ejecutar la consulta debido a error interno"})
+    };
 };
