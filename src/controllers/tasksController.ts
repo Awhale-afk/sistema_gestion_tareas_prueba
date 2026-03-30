@@ -41,10 +41,13 @@ export const deleteTask = async (req: Request, res: Response) =>{
     try{
         const {id} = req.params;
         const eraseTask = await pool.query(
-            `DELETE * FROM tasks WHERE id = $1;`,
+            `DELETE FROM tasks WHERE id = $1;`,
             [id]
         )
-        return res.status(200).json(eraseTask.rows)
+        if(eraseTask.rowCount === 0){
+            return res.status(404).json({message: "Tarea a borrar no encontrada"})
+        }
+            return res.status(200).json({message: "Tarea borrada con éxito"})
     }catch (error){
         console.error("Error. No se pudo borrar la tarea ", error);
         return res.status(500).json({message: "Error del servidor"})

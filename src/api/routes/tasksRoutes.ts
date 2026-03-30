@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createTask, seeTask } from "../../controllers/tasksController";
+import { createTask, seeTask, deleteTask } from "../../controllers/tasksController";
 
 const router = Router();
 
@@ -61,6 +61,30 @@ router.post('/createTask', createTask)
  */
 
 router.get('/:user_id', seeTask);
+
+/**
+ * @swagger
+ * /api/tasks/{id}:
+ *   delete:
+ *     summary: Eliminar una tarea por su ID
+ *     tags: [Tareas]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID único de la tarea a eliminar
+ *     responses:
+ *       200:
+ *         description: Tarea eliminada exitosamente
+ *       404:
+ *         description: No se encontró la tarea
+ *       500:
+ *         description: Error del servidor
+ */
+
+router.delete('/:id', deleteTask);
 
 
 export default router;
