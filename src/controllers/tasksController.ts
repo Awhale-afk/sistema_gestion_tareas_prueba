@@ -57,8 +57,10 @@ export const deleteTask = async (req: Request, res: Response) =>{
 //PUT//
 
 export const modifyTask = async (req: Request, res: Response) => {
+    
     try {
-        const {id, title, description, status} = req.body;
+        const id = req.body.id || req.params.id
+        const {title, description, status} = req.body;
 
         if (!id) return res.status(400).json({ message: "ID requerido" });
 

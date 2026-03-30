@@ -111,7 +111,7 @@ router.delete('/:id', deleteTask);
  *                 example: Tarea actualizada
  *               description:
  *                 type: string
- *               description: Nueva descripción (opcional)
+ *                 description: Nueva descripción (opcional)
  *                 example: Esta es una nueva descripción
  *               status:
  *                 type: boolean
@@ -130,7 +130,7 @@ router.delete('/:id', deleteTask);
 
 
 
-router.put('/:id', modifyTask)
+router.put('/', modifyTask)
 
 
 export default router;
