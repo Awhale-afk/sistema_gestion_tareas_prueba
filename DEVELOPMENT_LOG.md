@@ -25,6 +25,7 @@ Fecha: 28/03/2026
 
 Fecha 29/03/2026
 *Creación de tabla de tareas en PostgreSQL y controlador de tareas (tasksController.ts) para procesar la lógica del registro, obtención, borrado y modificación de las mismas.
+*Creación de operaciones del CRUD para las tareas (POST, DELETE, GET, PUT)
 
 
 
