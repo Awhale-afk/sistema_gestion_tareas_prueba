@@ -28,6 +28,9 @@ Fecha 29/03/2026
 *Creación de operaciones del CRUD para las tareas (POST, DELETE, GET, PUT)
 *Instalación de dependencias para el JSWT con: npm install jsonwebtoken
 npm install --save-dev @types/jsonwebtoken
+*Conexión de los archivos html por medio de sus endpoints
+*Envío de datos desde front (registro.html) al back (Base de datos)
+
 
 
 

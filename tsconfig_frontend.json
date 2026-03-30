@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json", 
+  "compilerOptions": {
+    "rootDir": "./web/logica_ts",
+    "outDir": "./web/logica_converted_js",
+    "module": "ESNext",         
+    "moduleResolution": "bundler", 
+    "noEmit": false
+  },
+  "include": ["web/logica_ts/**/*.ts"]
+}
