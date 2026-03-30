@@ -1,0 +1,120 @@
+
+* {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(255, 255, 245);
+    display: flex;
+}
+
+/* Barra Lateral */
+#navLateral {
+    width: 250px;
+    height: 100vh;
+    background-color: #ffffff;
+    position: fixed;
+    left: 0;
+    top: 0;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    z-index: 100;
+}
+
+.navContent {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.navContent h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Botones con énfasis */
+.btnEnfasis {
+    background-color: rgb(23, 62, 67);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.3s;
+    transition: transform 0.3s ease;
+}
+
+.btnEnfasis:hover {
+    opacity: 0.9;
+    transform: scale(1.1);
+}
+
+#btnCerrarSesion {
+    margin-top: auto; /* Lo empuja al final de la barra lateral */
+}
+
+/* Contenido Principal */
+#mainContent {
+    margin-left: 250px; /* Espacio para la barra lateral fixed */
+    width: calc(100% - 250px);
+}
+
+/* Header Superior */
+#headerSuperior {
+    width: 100%;
+    background-color: #fff;
+    padding: 20px 40px;
+    border-bottom: 1px solid #ddd;
+}
+
+.headerContainer {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#nombreUsuarioPlaceholder {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgb(23, 62, 67);
+}
+
+/* Div Central de Tareas */
+#contenedorTareas {
+    padding: 40px;
+}
+
+.cardTareas {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.encabezadoTareas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background-color: #f8f9fa;
+    color: #666;
+}

@@ -33,6 +33,8 @@ npm install --save-dev @types/jsonwebtoken
 
 Fecha 30/03/2026
 *Se referencian los endpoints en los archivos html para navegar hacia ellos desde la navbar dentro de las etiquedas <a href="">
+*Creación de constantes para hacer GET y DELETE en la tabla de usuarios
+*Creación de la página web para la gestión de tareas
 
 
 
@@ -55,4 +57,21 @@ error TS5107: Option 'moduleResolution=node10' is deprecated and will stop funct
 error TS5109: Option 'moduleResolution' must be set to 'NodeNext' (or left unspecified) when option 'module' is set to 'NodeNext'
 Solución: Se especifica la versión de JavaScript a la que va a ser traducido (2022), y el valor de module y moduleResolution a NodeNext
 *Se le pide a Gemini que revise la estructura de las rutas como medida preventiva para estar seguro antes de continuar con la creación de las rutas y controladores. 
-Prompt: Antes de empezar con los controladores y rutas, revisa la estructura de carpetas y archivos que tengo para evitar algún inconveniente
+Prompt: Antes de empezar con los controladores y rutas, revisa la estructura de carpetas y archivos que tengo para evitar algún inconveniente.
+*Para agilizar el trabajo, se le pide a la IA que diseñe con HTML y CSS la página donde la gestión de tareas tendrá lugar.
+Prompt: 
+Diseña la página encargada de las tareas. Utiliza HTML y CSS.
+
+1. Los botones deben tener énfasis con este color rgb(23, 62, 67);
+
+2. Los nombres de las etiquetas deben estar en camelCase
+
+3. Necesito una barra de navegación lateral ubicada en el lado izquierdo que dentro contenga un botón para cerrar sesión. Position fixed, box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.3);
+
+4. Haz un div en el borde superior con width: 100% que contenga <h1> Bienvenido </h1> y al lado un placeholder para mostrar el nombre del usuario que ingresa
+
+5. Background color del body: rgb(255, 255, 245);
+
+6. Un div central donde poner el encabezado de las tareas y su información que viene del backend
+
+7. Fuente de todo: Sans serif

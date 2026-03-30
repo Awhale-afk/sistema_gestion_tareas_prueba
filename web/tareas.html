@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Tareas | Dashboard</title>
+    <link rel="stylesheet" href="tareas.css">
+</head>
+<body>
+
+    <nav id="navLateral">
+        <div class="navContent">
+            <h2>Menú</h2>
+            <hr>
+            <button id="btnCerrarSesion" class="btnEnfasis">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <main id="mainContent">
+        
+        <header id="headerSuperior">
+            <div class="headerContainer">
+                <h1>Bienvenido,</h1>
+                <span id="nombreUsuarioPlaceholder">Cargando...</span>
+            </div>
+        </header>
+
+        <section id="contenedorTareas">
+            <div class="cardTareas">
+                <div class="encabezadoTareas">
+                    <h2>Mis Pendientes</h2>
+                    <button id="btnNuevaTarea" class="btnEnfasis">+ Nueva Tarea</button>
+                </div>
+                
+                <table id="tablaTareas">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Descripción</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoTablaTareas">
+                        </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="logica_converted_js/dashboard.js"></script>
+</body>
+</html>

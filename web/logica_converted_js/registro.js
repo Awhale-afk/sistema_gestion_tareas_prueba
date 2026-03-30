@@ -3,7 +3,7 @@ let registroUsuario = document.getElementById('inputUsuario');
 let registroContraseña = document.getElementById('inputContraseña');
 let registroCorreo = document.getElementById('inputCorreo');
 let btnRegistrarme = document.getElementById('registrarme');
-btnRegistrarme.addEventListener('click', async function (c) {
+btnRegistrarme?.addEventListener('click', async function (c) {
     c.preventDefault();
     if (!registroUsuario || !registroContraseña || !registroCorreo) {
         alert("Todos los campos son obligatorios");
