@@ -34,3 +34,19 @@ export const seeTask = async (req: Request, res: Response) =>{
         return res.status(500).json({message:"Error del servidor"});
     }
 };
+
+//DELETE//
+
+export const deleteTask = async (req: Request, res: Response) =>{
+    try{
+        const {id} = req.params;
+        const eraseTask = await pool.query(
+            `DELETE * FROM tasks WHERE id = $1;`,
+            [id]
+        )
+        return res.status(200).json(eraseTask.rows)
+    }catch (error){
+        console.error("Error. No se pudo borrar la tarea ", error);
+        return res.status(500).json({message: "Error del servidor"})
+    }
+};
