@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createTask, seeTask, deleteTask } from "../../controllers/tasksController";
+import { createTask, seeTask, deleteTask, modifyTask } from "../../controllers/tasksController";
 
 const router = Router();
 
@@ -85,6 +85,52 @@ router.get('/:user_id', seeTask);
  */
 
 router.delete('/:id', deleteTask);
+
+/**
+ * @swagger
+ * /api/tasks:
+ *   put:
+ *     summary: Actualizar una tarea (permite cambios parciales)
+ *     tags: [Tareas]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - id
+ *             properties:
+ *               id:
+ *                 type: integer
+ *                 description: ID de la tarea que quieres modificar
+ *                 example: 1
+ *               title:
+ *                 type: string
+ *                 description: Nuevo título (opcional)
+ *                 example: Tarea actualizada
+ *               description:
+ *                 type: string
+ *               description: Nueva descripción (opcional)
+ *                 example: Esta es una nueva descripción
+ *               status:
+ *                 type: boolean
+ *                 description: Nuevo estado de la tarea (opcional)
+ *                 example: true
+ *     responses:
+ *       200:
+ *         description: Tarea actualizada con éxito
+ *       400:
+ *         description: Error en la solicitud (ej. falta el ID)
+ *       404:
+ *         description: No se encontró la tarea con ese ID
+ *       500:
+ *         description: Error interno del servidor
+ */
+
+
+
+router.put('/:id', modifyTask)
 
 
 export default router;

@@ -53,3 +53,42 @@ export const deleteTask = async (req: Request, res: Response) =>{
         return res.status(500).json({message: "Error del servidor"})
     }
 };
+
+//PUT//
+
+export const modifyTask = async (req: Request, res: Response) => {
+    try {
+        const {id, title, description, status} = req.body;
+
+        if (!id) return res.status(400).json({ message: "ID requerido" });
+
+        //currentTask busca la tarea con el id dado para tener a la mano sus datos//
+        const currentTask = await pool.query('SELECT * FROM tasks WHERE id = $1', [id]);
+        
+        if (currentTask.rowCount === 0) {
+            return res.status(404).json({ message: "Tarea no encontrada" });
+        }
+        const task = currentTask.rows[0];
+
+        //Guarda el mismo valor que ya tenía en esos campos si no hay cambios para no entregar un null a la DB//
+        const finalTitle = title !== undefined ? title : task.title;
+        const finalDesc = description !== undefined ? description : task.description;
+        const finalStatus = status !== undefined ? status : task.status;
+
+        //UPDATE con los valores que recoje//
+        const result = await pool.query(
+            `UPDATE tasks SET title = $1, description = $2, status = $3 
+             WHERE id = $4 RETURNING *`,
+            [finalTitle, finalDesc, finalStatus, id]
+        );
+
+        return res.status(200).json({ 
+            message: "Tarea actualizada correctamente", 
+            task: result.rows[0] 
+        });
+
+    } catch (error) {
+        console.error("Error en el UPDATE:", error);
+        return res.status(500).json({ message: "Error interno" });
+    }
+};
