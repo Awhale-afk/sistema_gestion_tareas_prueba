@@ -86,7 +86,7 @@ export const modifyTask = async (req: Request, res: Response) => {
 
         return res.status(200).json({ 
             message: "Tarea actualizada correctamente", 
-            task: result.rows[0] 
+            task: result.rows 
         });
 
     } catch (error) {

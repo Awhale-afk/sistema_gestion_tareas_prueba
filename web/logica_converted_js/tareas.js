@@ -80,7 +80,7 @@ function renderizarTabla(tareas) {
 async function ejecutarEliminacion(id) {
     if (!confirm("¿Eliminar tarea?"))
         return;
-    const response = await fetch(`/api/tasks/delete/${id}`, {
+    const response = await fetch(`/api/tasks/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
     });
@@ -89,11 +89,38 @@ async function ejecutarEliminacion(id) {
     }
 }
 //Función para modificar una tarea//
-function prepararEdicion(tarea) {
-    const nuevoTitulo = prompt("Nuevo título:", tarea.title);
-    if (!nuevoTitulo)
+async function prepararEdicion(tarea) {
+    const nuevoTitulo = prompt("Editar título:", tarea.title);
+    if (nuevoTitulo === null)
         return;
-    console.log("Editando tarea:", tarea.id, "Nuevo título:", nuevoTitulo);
+    const nuevaDescripcion = prompt("Editar descripción:", tarea.description);
+    if (nuevaDescripcion === null)
+        return;
+    try {
+        const response = await fetch(`/api/tasks/`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: tarea.id,
+                title: nuevoTitulo,
+                description: nuevaDescripcion
+            })
+        });
+        if (response.ok) {
+            alert("Tarea editada");
+            obtenerTareas();
+        }
+        else {
+            const error = await response.json();
+            alert("Error al editar: " + error.message);
+        }
+    }
+    catch (err) {
+        console.error("Error en la operación:", err);
+    }
 }
 //Función para añadir una nueva tarea//
 nuevaTareabtn.addEventListener('click', async () => {
