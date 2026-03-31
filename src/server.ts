@@ -71,6 +71,8 @@ app.get('/tareas', (req: Request, res: Response)=>{
     res.sendFile(path.join(__dirname, '../web/tareas.html'));
 })
 
+
+
 app.listen(PORT, async () =>{
     console.log(`Corriendo en: http://localhost:${PORT}`);
     await testConnection();

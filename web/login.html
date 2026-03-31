@@ -9,24 +9,30 @@
 <body>
     <header>
         <nav id="navBar">
-            
+            <img src="images/todoListoLogo.png" id="logoNav" alt="To-do listo logo">
             <a class="opcionesNavBar" href="/login">Inicia sesión</a>
             <a class="opcionesNavBar" href="/registro">Crea una cuenta</a>
         </nav>
     </header>
-    <h1>Bienvenido</h1>
-    <div id="divLogin">
-        <div id="divCredenciales">
-            <p>Email</p>
-            <input id="emailInput" class="inputCredenciales" type="text">
-            <p>Contraseña</p>
-            <input id="passwordInput" class="inputCredenciales" type="text">
 
-            <button id="ingresarBtn">Ingresar</button>
-            <p id="noCuenta">¿No tienes una cuenta? Créala ahora</p>
+    <div id="mainContent">
+        <div id="divTexto">
+            <p id="To-do">To-do listo</p>
+            <p id="parrafo">Con <span class="textoBold">to-do</span> listo tendrás tus tareas <br> organizadas para que tu día esté <br>siempre bien optimizado</p>
+        </div>
 
+        <div id="divLogin">
+            <div id="divCredenciales">
+                <p>Email</p>
+                <input id="emailInput" class="inputCredenciales" type="text">
+                <p>Contraseña</p>
+                <input id="passwordInput" class="inputCredenciales" type="text">
+                <button id="ingresarBtn">Ingresar</button>
+                <p id="noCuenta">¿No tienes una cuenta? Créala ahora</p>
+            </div>
         </div>
     </div>
+
     <script src="logica_converted_js/login.js"></script>
 </body>
 </html>

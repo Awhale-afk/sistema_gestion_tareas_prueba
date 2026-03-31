@@ -1,42 +1,91 @@
 
-body{
+body {
     background-color: rgb(255, 255, 245);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
-h1{
-    place-self: center;
-    margin-top: 180px;
+header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+h1 {
+    font-family: sans-serif;
+    text-align: center;
+    margin: 0;
+}
+
+p {
     font-family: sans-serif;
 }
 
-p{
+
+#mainContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5vw;           
+    width: 90%;
+    max-width: 1100px;
+    margin-top: 80px;
+    flex-wrap: wrap;
+}
+
+#divTexto {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    flex: 1 1 280px;
+    min-width: 240px;
+    max-width: 340px;   /* añade esto — limita el ancho del texto */
+}
+
+#To-do {
+    font-size: clamp(28px, 4vw, 48px);
     font-family: sans-serif;
+    margin: 0 0 16px 0;
+    padding: 0;
 }
 
-#divLogin{
-    place-self: center;
+#divLogin {
+    flex: 1 1 280px;
+    max-width: 420px;
+    min-width: 260px;
+    display: flex;
+    justify-content: center;
 }
 
-#divCredenciales{
+#divCredenciales {
     display: grid;
     border-color: gray;
     border-style: solid;
     border-radius: 10px;
     box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.3);
-    width: 270px;
-    height: 290px;
+    width: 100%;
+    max-width: 350px;
+    padding: 30px 24px;
+    box-sizing: border-box;
     place-content: center;
-
 }
 
-.inputCredenciales{
+.inputCredenciales {
     border-radius: 10px;
     border-style: solid;
     border-width: 2px;
     height: 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-#ingresarBtn, #registrarme{
+#ingresarBtn, #registrarme {
     width: 100px;
     height: 30px;
     background-color: rgb(23, 62, 67);
@@ -44,55 +93,107 @@ p{
     color: white;
     place-self: center;
     border-radius: 10px;
-    border-style:hidden;
+    border-style: hidden;
     margin-top: 25px;
     transition: transform 0.3s ease;
-    
+    cursor: pointer;
 }
 
-#ingresarBtn:hover, #registrarme:hover{ /*Animación de botón*/
+#ingresarBtn:hover, #registrarme:hover {
     transform: scale(1.1);
-    
 }
 
-#noCuenta{
+#noCuenta {
     font-family: sans-serif;
     font-size: 85%;
     margin-top: 15px;
+    text-align: center;
 }
 
-#navBar{
+#navBar {
     display: flex;
-    width: 50%;
+    width: clamp(300px, 60%, 800px);
     height: 80px;
     background-color: white;
     box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.3);
-    border-style:hidden;
+    border-style: hidden;
     border-radius: 15px;
-    place-self: center;
-    place-content: center;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    position: relative;
 }
 
-.opcionesNavBar{
-    display:inline-flex;
+#logoNav {
+    height: 48px;
+    width: auto;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.opcionesNavBar {
+    display: inline-flex;
     flex-direction: column;
     font-family: sans-serif;
-    color:black;
+    color: black;
     text-decoration: none;
-    margin: 30px 30px 30px 20px;
-    
+    margin: 0 16px;
+    padding: 8px 0;
 }
 
-.opcionesNavBar::after{         /*Animación de barra debajo de opciones de barra de navegación*/
+.opcionesNavBar::after {
     content: "";
     width: 100%;
     height: 2px;
-    background-color:rgb(23, 62, 67);
+    background-color: rgb(23, 62, 67);
     transform: scaleX(0);
     transition: transform 0.3s ease-out;
 }
 
-.opcionesNavBar:hover::after{ /*Activación de la animación*/
+.opcionesNavBar:hover::after {
     transform: scaleX(1);
-    transform: pointer;
+}
+
+
+@media (max-width: 650px) {
+    #mainContent {
+        flex-direction: column;
+        margin-top: 40px;
+        gap: 32px;
+    }
+
+    #divTexto {
+        text-align: center;
+    }
+
+    #navBar {
+        width: 90%;
+        height: auto;
+        padding: 12px 16px;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    #logoNav {
+        position: static;
+        transform: none;
+        margin-right: auto;
+    }
+}
+
+#registroContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+    gap: 24px;
+}
+
+#registroContent h1 {
+    font-family: sans-serif;
+    margin: 0;
 }
