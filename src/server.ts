@@ -42,7 +42,7 @@ import taskRoutes from './api/routes/tasksRoutes';
 app.use('/api/tasks', taskRoutes);
 
 
-const publicPath = path.resolve(__dirname, '../web');
+const publicPath = path.resolve(__dirname, '../../web');
 console.log("Serviendo archivos desde:", publicPath);
 
 app.use(express.static(publicPath));
