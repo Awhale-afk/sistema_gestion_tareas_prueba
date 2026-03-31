@@ -1,6 +1,6 @@
-let registroUsuario = document.getElementById('inputUsuario')
-let registroContraseña = document.getElementById('inputContraseña')
-let registroCorreo = document.getElementById('inputCorreo')
+let registroUsuario = document.getElementById('inputUsuario') as HTMLInputElement
+let registroContraseña = document.getElementById('inputContraseña') as HTMLInputElement
+let registroCorreo = document.getElementById('inputCorreo') as HTMLInputElement
 let btnRegistrarme = document.getElementById('registrarme') as HTMLButtonElement
 
 btnRegistrarme?.addEventListener('click', async function (c){
