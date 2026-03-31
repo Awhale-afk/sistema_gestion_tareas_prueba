@@ -57,36 +57,34 @@ export const deleteTask = async (req: Request, res: Response) =>{
 //PUT//
 
 export const modifyTask = async (req: Request, res: Response) => {
-    
     try {
-        const id = req.body.id || req.params.id
-        const {title, description, status} = req.body;
+        const id = req.body.id || req.params.id;
+        const { title, description, status, limit_date } = req.body;
 
         if (!id) return res.status(400).json({ message: "ID requerido" });
 
-        //currentTask busca la tarea con el id dado para tener a la mano sus datos//
         const currentTask = await pool.query('SELECT * FROM tasks WHERE id = $1', [id]);
         
         if (currentTask.rowCount === 0) {
             return res.status(404).json({ message: "Tarea no encontrada" });
         }
+        
         const task = currentTask.rows[0];
 
-        //Guarda el mismo valor que ya tenía en esos campos si no hay cambios para no entregar un null a la DB//
         const finalTitle = title !== undefined ? title : task.title;
         const finalDesc = description !== undefined ? description : task.description;
         const finalStatus = status !== undefined ? status : task.status;
+        const finalDate = limit_date !== undefined ? limit_date : task.limit_date;
 
-        //UPDATE con los valores que recoje//
         const result = await pool.query(
-            `UPDATE tasks SET title = $1, description = $2, status = $3 
-             WHERE id = $4 RETURNING *`,
-            [finalTitle, finalDesc, finalStatus, id]
+            `UPDATE tasks SET title = $1, description = $2, status = $3, limit_date = $4 
+             WHERE id = $5 RETURNING *`,
+            [finalTitle, finalDesc, finalStatus, finalDate, id]
         );
 
         return res.status(200).json({ 
             message: "Tarea actualizada correctamente", 
-            task: result.rows 
+            task: result.rows[0] 
         });
 
     } catch (error) {

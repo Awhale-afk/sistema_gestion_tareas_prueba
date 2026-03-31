@@ -47,8 +47,6 @@ async function obtenerTareas() {
     }
 }
 
-
-
 //Función para crear las tablas en html//
 function renderizarTabla(tareas: any[]) {
     if (!cuerpoTablaTareas) return;
@@ -97,7 +95,6 @@ function renderizarTabla(tareas: any[]) {
     });
 }
 
-
 //Función para el botón "Eliminar" de cada tarea//
 async function ejecutarEliminacion(id: number) {
     if (!confirm("¿Eliminar tarea?")) return;
@@ -114,13 +111,13 @@ async function ejecutarEliminacion(id: number) {
 
 //Función para modificar una tarea//
 async function prepararEdicion(tarea: any) {
-    
     const nuevoTitulo = prompt("Editar título:", tarea.title);
     if (nuevoTitulo === null) return; 
     const nuevaDescripcion = prompt("Editar descripción:", tarea.description);
     if (nuevaDescripcion === null) return;
+    const nuevaFecha = prompt("Editar fecha límite (AAAA-MM-DD):", tarea.limit_date ? tarea.limit_date.split('T')[0] : "");
+    if (nuevaFecha === null) return;
 
-    
     try {
         const response = await fetch(`/api/tasks/`, {
             method: 'PUT',
@@ -131,7 +128,8 @@ async function prepararEdicion(tarea: any) {
             body: JSON.stringify({ 
                 id: tarea.id,      
                 title: nuevoTitulo, 
-                description: nuevaDescripcion 
+                description: nuevaDescripcion,
+                limit_date: nuevaFecha
             })
         });
 
@@ -149,9 +147,9 @@ async function prepararEdicion(tarea: any) {
 
 //Función para añadir una nueva tarea//
 nuevaTareabtn.addEventListener('click', async () => {
-    
     const title = prompt("Título de la nueva tarea:");
     const description = prompt("Descripción de la tarea:");
+    const limit_date = prompt("Fecha límite (AAAA-MM-DD):");
 
     if (!title) return; //Si no se registra información nueva, retorna//
 
@@ -166,7 +164,8 @@ nuevaTareabtn.addEventListener('click', async () => {
             body: JSON.stringify({
                 title: title,
                 description: description,
-                user_id: userId //El id de usuario que se envía al iniciar sesión y que se guarda en el localStorage//
+                user_id: userId, //El id de usuario que se envía al iniciar sesión y que se guarda en el localStorage//
+                limit_date: limit_date
             })
         });
             //Actualiza la vista de las tareas con la nueva que se agrega trayendo los datos de la tabla tasks//
@@ -174,7 +173,6 @@ nuevaTareabtn.addEventListener('click', async () => {
             alert("Tarea creada con éxito");
             obtenerTareas(); 
         } else {
-            
             const errorData = await response.json();
             console.error("Error en el back: ", errorData);
             alert("Error al crear la tarea" + errorData.message);
