@@ -1,4 +1,5 @@
 Deploy: https://sistema-gestion-tareas-prueba.onrender.com/
+Nota: El proyecto podría demorar un poco en abrir ya que render tiene un tiempo de inactividad en la que desactiva temporalmente el link hasta que alguien interactúa con el. Si no muestra el contenido de la página hay que recargar.
 
 Descripción:
 
