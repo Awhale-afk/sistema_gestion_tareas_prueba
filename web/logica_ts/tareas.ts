@@ -97,7 +97,7 @@ function renderizarTabla(tareas: any[]) {
 async function ejecutarEliminacion(id: number) {
     if (!confirm("¿Eliminar tarea?")) return;
 
-    const response = await fetch(`/api/tasks/delete/${id}`, { // Ajusta a tu ruta real
+    const response = await fetch(`/api/tasks/${id}`, { 
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
     });
@@ -108,11 +108,38 @@ async function ejecutarEliminacion(id: number) {
 }
 
 //Función para modificar una tarea//
-function prepararEdicion(tarea: any) {
-    const nuevoTitulo = prompt("Nuevo título:", tarea.title);
-    if (!nuevoTitulo) return;
+async function prepararEdicion(tarea: any) {
     
-    console.log("Editando tarea:", tarea.id, "Nuevo título:", nuevoTitulo);
+    const nuevoTitulo = prompt("Editar título:", tarea.title);
+    if (nuevoTitulo === null) return; 
+    const nuevaDescripcion = prompt("Editar descripción:", tarea.description);
+    if (nuevaDescripcion === null) return;
+
+    
+    try {
+        const response = await fetch(`/api/tasks/`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+                id: tarea.id,      
+                title: nuevoTitulo, 
+                description: nuevaDescripcion 
+            })
+        });
+
+        if (response.ok) {
+            alert("Tarea editada");
+            obtenerTareas(); 
+        } else {
+            const error = await response.json();
+            alert("Error al editar: " + error.message);
+        }
+    } catch (err) {
+        console.error("Error en la operación:", err);
+    }
 }
 
 //Función para añadir una nueva tarea//
@@ -160,7 +187,7 @@ btnCerrarSesion?.addEventListener('click', () => {
 });
 
 function manejarSesionExpirada() {
-    alert("Tu sesión ha expirado (1 hora).");
+    alert("Tu sesión ha expirado (1 hora) Serás redireccionado al inicio.");
     localStorage.clear();
     window.location.href = 'login.html';
 }
