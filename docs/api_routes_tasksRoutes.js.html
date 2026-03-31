@@ -12,6 +12,8 @@ const router = (0, express_1.Router)();
  *  post:
  *     summary: Crear una nueva tarea
  *     tags: [Tareas]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *         required: true
  *         content:
@@ -31,9 +33,15 @@ const router = (0, express_1.Router)();
  *                     user_id:
  *                       type: integer
  *                       example: 6
+ *                     limit_date:
+ *                         type: string
+ *                         format: date
+ *                         example: "2026-04-15"
  *     responses:
  *         201:
  *           description: Tarea creada exitosamente
+ *         401:
+ *           description: Acceso denegado. Token inválido
  *         400:
  *           description: No se pudo crear la tarea, faltan datos
  *         500:
@@ -70,6 +78,8 @@ router.get('/:user_id', authMiddleware_1.authenticateToken, tasksController_1.se
  *   delete:
  *     summary: Eliminar una tarea por su ID
  *     tags: [Tareas]
+ *     security:
+ *        - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -80,6 +90,8 @@ router.get('/:user_id', authMiddleware_1.authenticateToken, tasksController_1.se
  *     responses:
  *       200:
  *         description: Tarea eliminada exitosamente
+ *       401:
+ *         description: Token inválido
  *       404:
  *         description: No se encontró la tarea
  *       500:
@@ -92,6 +104,8 @@ router.delete('/:id', tasksController_1.deleteTask);
  *   put:
  *     summary: Actualizar una tarea (permite cambios parciales)
  *     tags: [Tareas]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -120,6 +134,8 @@ router.delete('/:id', tasksController_1.deleteTask);
  *     responses:
  *       200:
  *         description: Tarea actualizada con éxito
+ *       401:
+ *         description: Token inválido
  *       400:
  *         description: Error en la solicitud (ej. falta el ID)
  *       404:

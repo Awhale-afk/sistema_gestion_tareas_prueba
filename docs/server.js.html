@@ -35,27 +35,28 @@ const authRoutes_1 = __importDefault(require("./api/routes/authRoutes"));
 app.use('/api/auth', authRoutes_1.default);
 const tasksRoutes_1 = __importDefault(require("./api/routes/tasksRoutes"));
 app.use('/api/tasks', tasksRoutes_1.default);
-app.use(express_1.default.static(path_1.default.join(__dirname, '../web')));
-//Ruta para el Login//
+const publicPath = path_1.default.resolve(__dirname, '../web');
+console.log("Serviendo archivos desde:", publicPath);
+app.use(express_1.default.static(publicPath));
 app.get('/login', (req, res) => {
-    res.sendFile(path_1.default.join(__dirname, '../web/login.html'));
+    res.sendFile(path_1.default.join(publicPath, 'login.html'));
 });
-//Ruta para el Registro//
 app.get('/registro', (req, res) => {
-    res.sendFile(path_1.default.join(__dirname, '../web/registro.html'));
+    res.sendFile(path_1.default.join(publicPath, 'registro.html'));
 });
-//Ruta que redirige el enpoint por defecto al login//
 app.get('/', (req, res) => {
     res.redirect('/login');
-});
-app.get('/', (req, res) => {
-    res.json({ message: "API encendida" });
 });
 //Endpoint que redirige hacia la gestión de tareas//
 app.get('/tareas', (req, res) => {
     res.sendFile(path_1.default.join(__dirname, '../web/tareas.html'));
 });
-app.listen(PORT, async () => {
+const docsPath = path_1.default.resolve(__dirname, '../docs');
+app.use('/docs', express_1.default.static(docsPath));
+app.get('/documentacion', (req, res) => {
+    res.sendFile(path_1.default.join(docsPath, 'index.html'));
+});
+app.listen(PORT, '0.0.0.0', async () => {
     console.log(`Corriendo en: http://localhost:${PORT}`);
     await (0, databaseConnection_1.testConnection)();
 });

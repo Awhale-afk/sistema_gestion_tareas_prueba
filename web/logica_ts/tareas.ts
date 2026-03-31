@@ -56,7 +56,7 @@ function renderizarTabla(tareas: any[]) {
     cuerpoTablaTareas.innerHTML = ""; //Limpia la tabla antes de insertar datos//
 
     if (tareas.length === 0) {
-        cuerpoTablaTareas.innerHTML = `<tr><td colspan="5" style="text-align:center;">No tienes tareas pendientes.</td></tr>`;
+        cuerpoTablaTareas.innerHTML = `<tr><td colspan="6" style="text-align:center;">No tienes tareas pendientes.</td></tr>`;
         return;
     }
 
