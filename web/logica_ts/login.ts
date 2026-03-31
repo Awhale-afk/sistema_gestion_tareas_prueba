@@ -1,6 +1,6 @@
-let correo = document.getElementById('emailInput')
-let contraseña = document.getElementById('passwordInput')
-let btnIngresar = document.getElementById('ingresarBtn')
+let correo = document.getElementById('emailInput') as HTMLInputElement
+let contraseña = document.getElementById('passwordInput') as HTMLInputElement
+let btnIngresar = document.getElementById('ingresarBtn') as HTMLButtonElement
 
 btnIngresar.addEventListener('click', async function (c){
     c.preventDefault();
