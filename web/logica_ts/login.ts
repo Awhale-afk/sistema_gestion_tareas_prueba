@@ -28,9 +28,14 @@ try{
     const result = await send.json();
 
     //Manejo de respuesta//
-    if(send.ok){
-        alert("Bienvenido, será redirigido a su espacio de tareas")
+    if (send.ok) {
+    localStorage.setItem('token', result.token); 
+    localStorage.setItem('userId', result.user.id);
+    localStorage.setItem('username', result.user.username);
+
+    alert("Bienvenido, será redirigido a su espacio de tareas")
         window.location.href = '/tareas'
+        
     }else{
         alert("Error: " + result.message)
     }

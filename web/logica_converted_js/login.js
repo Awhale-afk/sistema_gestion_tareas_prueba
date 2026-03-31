@@ -8,8 +8,6 @@ btnIngresar.addEventListener('click', async function (c) {
         alert("Se necesita correo y contraseña para ingresar");
         return;
     }
-    alert("Presionado");
-    console.log(`Correo ${correo} y contraseña ${contraseña}`);
     let email = correo.value;
     let password = contraseña.value;
     try {
@@ -27,6 +25,9 @@ btnIngresar.addEventListener('click', async function (c) {
         const result = await send.json();
         //Manejo de respuesta//
         if (send.ok) {
+            localStorage.setItem('token', result.token);
+            localStorage.setItem('userId', result.user.id);
+            localStorage.setItem('username', result.user.username);
             alert("Bienvenido, será redirigido a su espacio de tareas");
             window.location.href = '/tareas';
         }

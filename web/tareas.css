@@ -54,12 +54,12 @@ body {
 }
 
 #btnCerrarSesion {
-    margin-top: auto; /* Lo empuja al final de la barra lateral */
+    margin-top: auto; 
 }
 
 /* Contenido Principal */
 #mainContent {
-    margin-left: 250px; /* Espacio para la barra lateral fixed */
+    margin-left: 250px; 
     width: calc(100% - 250px);
 }
 
@@ -114,7 +114,56 @@ th, td {
     border-bottom: 1px solid #eee;
 }
 
+td:last-child {
+    display: flex;
+    gap: 8px; /* Espacio entre Editar y Eliminar */
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
 th {
     background-color: #f8f9fa;
     color: #666;
+}
+
+
+.btnAccion {
+    background-color: #d9534f; 
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 0.8rem;
+}
+
+.btnAccion:hover {
+    background-color: #c9302c;
+}
+
+
+.btnEditar {
+    background-color: rgb(23, 62, 67); 
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.selectEstado {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: rgb(23, 62, 67);
+}
+
+.selectEstado:focus {
+    outline: none;
+    border-color: rgb(23, 62, 67);
 }

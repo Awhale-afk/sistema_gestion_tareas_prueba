@@ -1,24 +1,21 @@
-const nombreUsuarioPlaceholder = document.getElementById('nombreUsuarioPlaceholder') as HTMLSpanElement;
-const cuerpoTablaTareas = document.getElementById('cuerpoTablaTareas') as HTMLTableSectionElement;
-const btnCerrarSesion = document.getElementById('btnCerrarSesion') as HTMLButtonElement;
-const nuevaTareabtn = document.getElementById('btnNuevaTarea') as HTMLButtonElement
-
+"use strict";
+const nombreUsuarioPlaceholder = document.getElementById('nombreUsuarioPlaceholder');
+const cuerpoTablaTareas = document.getElementById('cuerpoTablaTareas');
+const btnCerrarSesion = document.getElementById('btnCerrarSesion');
+const nuevaTareabtn = document.getElementById('btnNuevaTarea');
 //Guardar las credenciales en el almacenamiento local//
 const token = localStorage.getItem('token');
 const userId = localStorage.getItem('userId');
 const username = localStorage.getItem('username');
-
 //Validación de seguridad para mostrar los datos al usuario correspondiente//
 if (!token || !userId) {
     alert("Sesión inválida. Por favor, inicia sesión.");
-    window.location.href = 'login.html'; 
+    window.location.href = 'login.html';
 }
-
 //Mostrar el nombre del usuario al entrar//
 if (nombreUsuarioPlaceholder && username) {
     nombreUsuarioPlaceholder.textContent = username;
 }
-
 //Función para obtener las tareas guardadas en tabla tasks//
 async function obtenerTareas() {
     try {
@@ -30,39 +27,30 @@ async function obtenerTareas() {
                 'Content-Type': 'application/json'
             }
         });
-
         if (response.status === 401 || response.status === 403) {
             manejarSesionExpirada();
             return;
         }
-
         const data = await response.json();
-        console.log('Tareas recibidas; ', data)
-        
-        const listaTareas = data.tasks || data; 
+        console.log('Tareas recibidas; ', data);
+        const listaTareas = data.tasks || data;
         renderizarTabla(listaTareas);
-
-    } catch (error) {
+    }
+    catch (error) {
         console.error("Error al conectar con la API de tareas:", error);
     }
 }
-
-
-
 //Función para crear las tablas en html//
-function renderizarTabla(tareas: any[]) {
-    if (!cuerpoTablaTareas) return;
-
+function renderizarTabla(tareas) {
+    if (!cuerpoTablaTareas)
+        return;
     cuerpoTablaTareas.innerHTML = ""; //Limpia la tabla antes de insertar datos//
-
     if (tareas.length === 0) {
         cuerpoTablaTareas.innerHTML = `<tr><td colspan="5" style="text-align:center;">No tienes tareas pendientes.</td></tr>`;
         return;
     }
-
     tareas.forEach((tarea) => {
         const fila = document.createElement('tr');
-        
         fila.innerHTML = `
             <td>${tarea.id}</td>
             <td>${tarea.title}</td>
@@ -79,50 +67,40 @@ function renderizarTabla(tareas: any[]) {
                 <button class="btnAccion" data-id="${tarea.id}">Eliminar</button>
             </td>
         `;
-        const selectEstado = fila.querySelector('.selectEstado') as HTMLSelectElement;
+        const selectEstado = fila.querySelector('.selectEstado');
         selectEstado.onchange = () => actualizarEstadoTarea(tarea.id, selectEstado.value);
-
-        const btnEdit = fila.querySelector('.btnEditar') as HTMLButtonElement;
-        const btnDel = fila.querySelector('.btnAccion') as HTMLButtonElement;
-
+        const btnEdit = fila.querySelector('.btnEditar');
+        const btnDel = fila.querySelector('.btnAccion');
         btnEdit.onclick = () => prepararEdicion(tarea);
         btnDel.onclick = () => ejecutarEliminacion(tarea.id);
-
         cuerpoTablaTareas.appendChild(fila);
     });
 }
-
-
 //Función para el botón "Eliminar" de cada tarea//
-async function ejecutarEliminacion(id: number) {
-    if (!confirm("¿Eliminar tarea?")) return;
-
-    const response = await fetch(`/api/tasks/delete/${id}`, { // Ajusta a tu ruta real
+async function ejecutarEliminacion(id) {
+    if (!confirm("¿Eliminar tarea?"))
+        return;
+    const response = await fetch(`/api/tasks/delete/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
     });
-
     if (response.ok) {
         obtenerTareas(); //Recarga la tabla para mostrar el restultado//
     }
 }
-
 //Función para modificar una tarea//
-function prepararEdicion(tarea: any) {
+function prepararEdicion(tarea) {
     const nuevoTitulo = prompt("Nuevo título:", tarea.title);
-    if (!nuevoTitulo) return;
-    
+    if (!nuevoTitulo)
+        return;
     console.log("Editando tarea:", tarea.id, "Nuevo título:", nuevoTitulo);
 }
-
 //Función para añadir una nueva tarea//
 nuevaTareabtn.addEventListener('click', async () => {
-    
     const title = prompt("Título de la nueva tarea:");
     const description = prompt("Descripción de la tarea:");
-
-    if (!title) return; //Si no se registra información nueva, retorna//
-
+    if (!title)
+        return; //Si no se registra información nueva, retorna//
     try {
         //Envía al backend la información registrada//
         const response = await fetch('/api/tasks/createTask', {
@@ -137,36 +115,33 @@ nuevaTareabtn.addEventListener('click', async () => {
                 user_id: userId //El id de usuario que se envía al iniciar sesión y que se guarda en el localStorage//
             })
         });
-            //Actualiza la vista de las tareas con la nueva que se agrega trayendo los datos de la tabla tasks//
+        //Actualiza la vista de las tareas con la nueva que se agrega trayendo los datos de la tabla tasks//
         if (response.ok) {
             alert("Tarea creada con éxito");
-            obtenerTareas(); 
-        } else {
-            
+            obtenerTareas();
+        }
+        else {
             const errorData = await response.json();
             console.error("Error en el back: ", errorData);
             alert("Error al crear la tarea" + errorData.message);
         }
-
-    } catch (error) {
+    }
+    catch (error) {
         console.error("Error en la petición:", error);
     }
 });
-
 //Cierre de sesión
 btnCerrarSesion?.addEventListener('click', () => {
     localStorage.clear();
     window.location.href = 'login.html';
 });
-
 function manejarSesionExpirada() {
     alert("Tu sesión ha expirado (1 hora).");
     localStorage.clear();
     window.location.href = 'login.html';
 }
-
 //Función para actualizar el estado de una tarea//
-async function actualizarEstadoTarea(id: number, nuevoEstado: string) {
+async function actualizarEstadoTarea(id, nuevoEstado) {
     try {
         const response = await fetch(`/api/tasks/updateStatus/${id}`, {
             method: 'PATCH', //Se usa patch al solo actualizar una parte del dato//
@@ -176,14 +151,13 @@ async function actualizarEstadoTarea(id: number, nuevoEstado: string) {
             },
             body: JSON.stringify({ status: nuevoEstado })
         });
-
         if (!response.ok) {
             alert("No se pudo actualizar el estado");
         }
-    } catch (error) {
+    }
+    catch (error) {
         console.error("Error actualizando estado:", error);
     }
 }
-
 //Ejecución inicial//
 obtenerTareas();

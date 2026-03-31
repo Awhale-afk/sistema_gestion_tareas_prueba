@@ -28,7 +28,7 @@ export const seeTask = async (req: Request, res: Response) =>{
             `SELECT * FROM tasks WHERE user_id = $1;`,
             [user_id]
         )
-        return res.status(200).json(getTask.rows[0])
+        return res.status(200).json(getTask.rows)
     }catch (error){
         console.error("Error. No se pudieron consultar las tareas ", error);
         return res.status(500).json({message:"Error del servidor"});
@@ -92,5 +92,27 @@ export const modifyTask = async (req: Request, res: Response) => {
     } catch (error) {
         console.error("Error en el UPDATE:", error);
         return res.status(500).json({ message: "Error interno" });
+    }
+};
+
+//POST//
+export const updateTaskStatus = async (req: Request, res: Response) => {
+    const { id } = req.params; //id de la tarea que se va a modificar
+    const { status } = req.body; //El nuevo estado//
+
+    try {
+        const result = await pool.query(
+            "UPDATE tasks SET status = $1 WHERE id = $2 RETURNING *;",
+            [status, id]
+        );
+
+        if (result.rowCount === 0) {
+            return res.status(404).json({ message: "Tarea no encontrada" });
+        }
+
+        return res.status(200).json({ message: "Estado actualizado", task: result.rows[0] });
+    } catch (error) {
+        console.error("Error al actualizar estado:", error);
+        return res.status(500).json({ message: "Error interno del servidor" });
     }
 };

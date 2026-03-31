@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createTask, seeTask, deleteTask, modifyTask } from "../../controllers/tasksController";
+import { createTask, seeTask, deleteTask, modifyTask, updateTaskStatus} from "../../controllers/tasksController";
 import { authenticateToken } from '../middlewares/authMiddleware';
 
 const router = Router();
@@ -39,7 +39,7 @@ const router = Router();
  */     
 
 /**@name POST/api/tasks */
-router.post('/createTask', createTask)
+router.post('/createTask', authenticateToken, createTask)
 
 /**
  * @swagger
@@ -134,6 +134,7 @@ router.delete('/:id', deleteTask);
 /**@name PUT/api/tasks */
 router.put('/', modifyTask)
 
-
+/**@name PATCH/api/tasks */
+router.patch('/updateStatus/:id', authenticateToken, updateTaskStatus);
 
 export default router;
