@@ -26,6 +26,7 @@ DATABASE_URL=postgres://usuario:contraseña@host:puerto/nombre_bd?sslmode=requir
 ¿Como ejecutarlo?
 En la consola, en desarrollo se ejecuta npm run dev. Esto confirmará la conexión con la base de datos y mostrará el puerto en el que está corriendo.
 En caso de tener problemas en windows con la ejecución de scripts se puede ejecutar Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process en el terminal del editor de código
+Para la traducción de archivos ts a js se utiliza: npx tsc -p tsconfig_frontend.json --watch
 
 
 Comando para build y deploy:
