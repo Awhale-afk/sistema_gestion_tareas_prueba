@@ -41,22 +41,17 @@ app.use('/api/auth', authRoutes)
 import taskRoutes from './api/routes/tasksRoutes';
 app.use('/api/tasks', taskRoutes);
 
-app.use(express.static(path.join(__dirname, '../web')));
 
+const publicPath = path.resolve(__dirname, '../web');
+console.log("Serviendo archivos desde:", publicPath);
 
-//Ruta para el Login//
+app.use(express.static(publicPath));
+
 app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, '../web/login.html'));
+    res.sendFile(path.join(publicPath, 'login.html'));
 });
-
-//Ruta para el Registro//
 app.get('/registro', (req, res) => {
-    res.sendFile(path.join(__dirname, '../web/registro.html'));
-});
-
-//Ruta que redirige el enpoint por defecto al login//
-app.get('/', (req: Request, res: Response) => {
-    res.redirect('/login');
+    res.sendFile(path.join(publicPath, 'registro.html'));
 });
 
 
