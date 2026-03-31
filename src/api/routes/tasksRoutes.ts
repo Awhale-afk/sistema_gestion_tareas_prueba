@@ -31,6 +31,10 @@ const router = Router();
  *                     user_id:
  *                       type: integer
  *                       example: 6
+ *                     limit_date:
+ *                         type: string
+ *                         format: date
+ *                         example: "2026-04-15"
  *     responses:
  *         201:
  *           description: Tarea creada exitosamente

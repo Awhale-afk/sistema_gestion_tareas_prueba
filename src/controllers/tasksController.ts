@@ -5,12 +5,12 @@ import {pool} from '../persistence/databaseConnection';
 
 export const createTask = async (req: Request, res: Response) =>{
     try{
-        const {title, description, user_id} = req.body;
+        const {title, description, user_id, limit_date} = req.body;
         const newTask = await pool.query(
-            `INSERT INTO tasks (title, description, user_id) 
-            VALUES ($1, $2, $3)
+            `INSERT INTO tasks (title, description, user_id, limit_date) 
+            VALUES ($1, $2, $3, $4)
             RETURNING *`,
-            [title, description, user_id]
+            [title, description, user_id, limit_date]
         );
         return res.status(201).json(newTask.rows[0]);
 }catch (error){
