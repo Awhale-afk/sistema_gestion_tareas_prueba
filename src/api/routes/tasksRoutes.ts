@@ -10,6 +10,8 @@ const router = Router();
  *  post:
  *     summary: Crear una nueva tarea
  *     tags: [Tareas]
+ *     security:
+ *       - bearerAuth: []   
  *     requestBody:
  *         required: true
  *         content:
@@ -32,6 +34,8 @@ const router = Router();
  *     responses:
  *         201:
  *           description: Tarea creada exitosamente
+ *         401:
+ *           description: Acceso denegado. Token inválido
  *         400:
  *           description: No se pudo crear la tarea, faltan datos
  *         500:
@@ -72,6 +76,8 @@ router.get('/:user_id', authenticateToken, seeTask);
  *   delete:
  *     summary: Eliminar una tarea por su ID
  *     tags: [Tareas]
+ *     security:
+ *        - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -82,6 +88,8 @@ router.get('/:user_id', authenticateToken, seeTask);
  *     responses:
  *       200:
  *         description: Tarea eliminada exitosamente
+ *       401:
+ *         description: Token inválido
  *       404:
  *         description: No se encontró la tarea
  *       500:
@@ -96,6 +104,8 @@ router.delete('/:id', deleteTask);
  *   put:
  *     summary: Actualizar una tarea (permite cambios parciales)
  *     tags: [Tareas]
+ *     security:
+ *       - bearerAuth: [] 
  *     requestBody:
  *       required: true
  *       content:
@@ -124,6 +134,8 @@ router.delete('/:id', deleteTask);
  *     responses:
  *       200:
  *         description: Tarea actualizada con éxito
+ *       401:
+ *         description: Token inválido
  *       400:
  *         description: Error en la solicitud (ej. falta el ID)
  *       404:
