@@ -1,3 +1,5 @@
+Descripción:
+
 To-do listo es una aplicación web como parte de una prueba técnica diseñada para como un sistema de gestión de tareas en donde el usuario puede registrarse, iniciar sesión de forma sencilla y segura y gestionar sus tareas. Esta gestión incluye crear, leer, actualizar y eliminar tareas a voluntad mediante una interfaz intuitiva y una API completa.
 
 Arquitectura:
