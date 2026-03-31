@@ -13,8 +13,12 @@ const swaggerOptions: swaggerJSDoc.Options = {
             description: 'Documentación técnica del sistema de gestión de tareas con PostgreSQL.',
         },
         servers: [
+            {   //Puerto URL para servidor//
+                url: 'https://sistema-gestion-tareas-prueba.onrender.com',
+                description: 'Servidor de Producción (Render)'
+            },
             {
-                //Puerto de URL//
+                //Puerto de URL para local//
                 url: `http://localhost:${config.PORT || 3000}`, 
                 description: 'Servidor Local',
             },
