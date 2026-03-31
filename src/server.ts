@@ -44,7 +44,6 @@ app.use('/api/tasks', taskRoutes);
 
 const publicPath = path.resolve(__dirname, '../web');
 console.log("Serviendo archivos desde:", publicPath);
-
 app.use(express.static(publicPath));
 
 app.get('/login', (req, res) => {
@@ -59,11 +58,6 @@ app.get('/', (req: Request, res: Response) => {  //Redirige / al login//
 });
 
 
-app.get('/', (req: Request, res: Response) => {     //Enpoint de prueba para encender la API en local//
-    res.json({message: "API encendida"})
-
-});
-
 //Endpoint que redirige hacia la gestión de tareas//
 app.get('/tareas', (req: Request, res: Response)=>{
     res.sendFile(path.join(__dirname, '../web/tareas.html'));
@@ -71,7 +65,7 @@ app.get('/tareas', (req: Request, res: Response)=>{
 
 
 
-app.listen(PORT, async () =>{
+app.listen(PORT,'0.0.0.0', async () =>{
     console.log(`Corriendo en: http://localhost:${PORT}`);
     await testConnection();
 });
