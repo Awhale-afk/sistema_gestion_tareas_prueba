@@ -45,7 +45,7 @@ try{
 
 }catch(error) {
     console.error("Error interno al validar datos ")
-    alert("No se pudo ingresar. Error interno de validación")
+    alert("No se pudo ingresar. Error interno de validación" + error)
 
 }
 
