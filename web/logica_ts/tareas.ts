@@ -65,22 +65,22 @@ function renderizarTabla(tareas: any[]) {
         ? new Date(tarea.limit_date).toLocaleDateString(): '---';
         
             fila.innerHTML = `
-            <td>${tarea.id}</td>
-            <td>${tarea.title}</td>
-            <td>${tarea.description || 'Sin descripción'}</td>
-            <td><strong>${fechaFormateada}</strong></td> 
-                <td>
-                    <select class="selectEstado" data-id="${tarea.id}">
-                        <option value="No lista" ${tarea.status === 'No lista' ? 'selected' : ''}>No lista</option>
-                        <option value="En proceso" ${tarea.status === 'En proceso' ? 'selected' : ''}>En proceso</option>
-                        <option value="Terminada" ${tarea.status === 'Terminada' ? 'selected' : ''}>Terminada</option>
-                    </select>
-                </td>
-            <td>
-                <button class="btnEditar" data-id="${tarea.id}">Editar</button>
-                <button class="btnAccion" data-id="${tarea.id}">Eliminar</button>
-            </td>
-`;  
+                    <td>${tarea.id}</td>
+                    <td>${tarea.title}</td>
+                    <td>${tarea.description || 'Sin descripción'}</td>
+                    <td><strong>${fechaFormateada}</strong></td>
+                    <td>
+                        <select class="selectEstado" data-id="${tarea.id}">
+                            <option value="No lista" ${tarea.status === 'No lista' ? 'selected' : ''}>No lista</option>
+                            <option value="En proceso" ${tarea.status === 'En proceso' ? 'selected' : ''}>En proceso</option>
+                            <option value="Terminada" ${tarea.status === 'Terminada' ? 'selected' : ''}>Terminada</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="btnEditar" data-id="${tarea.id}">Editar</button>
+                        <button class="btnAccion" data-id="${tarea.id}">Eliminar</button>
+                    </td>
+                `; 
         const selectEstado = fila.querySelector('.selectEstado') as HTMLSelectElement;
         selectEstado.onchange = () => actualizarEstadoTarea(tarea.id, selectEstado.value);
 
