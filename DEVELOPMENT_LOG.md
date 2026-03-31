@@ -35,13 +35,9 @@ Fecha 30/03/2026
 *Se referencian los endpoints en los archivos html para navegar hacia ellos desde la navbar dentro de las etiquedas <a href="">
 *Creación de constantes para hacer GET y DELETE en la tabla de usuarios
 *Creación de la página web para la gestión de tareas
-
-
-
-
-
-
-
+*Modificaciones en el HTML Y CSS de la página para ajustar  su diseño responsivo
+*Actualización de la documentación de Swagger y JSDoc
+*Creación de peticiones HTTP para la gestión de las tareas
 
 
 
