@@ -33,6 +33,9 @@ Tecnologías:
 -npm install express pg cors dotenv swagger-ui-express => 
 -npm install -D typescript ts-node-dev @types/express @types/node @types/pg @types/cors @types/swagger-ui-express
 
+Sistema de control de versiones:
+-Se utilizó Git
+
 Documentación:
 -npm install -D jsdoc rimraf
 
