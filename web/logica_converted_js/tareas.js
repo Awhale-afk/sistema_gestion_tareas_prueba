@@ -46,27 +46,30 @@ function renderizarTabla(tareas) {
         return;
     cuerpoTablaTareas.innerHTML = ""; //Limpia la tabla antes de insertar datos//
     if (tareas.length === 0) {
-        cuerpoTablaTareas.innerHTML = `<tr><td colspan="5" style="text-align:center;">No tienes tareas pendientes.</td></tr>`;
+        cuerpoTablaTareas.innerHTML = `<tr><td colspan="6" style="text-align:center;">No tienes tareas pendientes.</td></tr>`;
         return;
     }
     tareas.forEach((tarea) => {
         const fila = document.createElement('tr');
+        const fechaFormateada = tarea.limit_date
+            ? new Date(tarea.limit_date).toLocaleDateString() : '---';
         fila.innerHTML = `
-            <td>${tarea.id}</td>
-            <td>${tarea.title}</td>
-            <td>${tarea.description || 'Sin descripción'}</td>
-            <td>
-                <select class="selectEstado" data-id="${tarea.id}">
-                    <option value="No lista" ${tarea.status === 'No lista' ? 'selected' : ''}>No lista</option>
-                    <option value="En proceso" ${tarea.status === 'En proceso' ? 'selected' : ''}>En proceso</option>
-                    <option value="Terminada" ${tarea.status === 'Terminada' ? 'selected' : ''}>Terminada</option>
-                </select>
-            </td>
-                <button class="btnEditar" data-id="${tarea.id}">Editar</button>
-                
-                <button class="btnAccion" data-id="${tarea.id}">Eliminar</button>
-            </td>
-        `;
+                    <td>${tarea.id}</td>
+                    <td>${tarea.title}</td>
+                    <td>${tarea.description || 'Sin descripción'}</td>
+                    <td><strong>${fechaFormateada}</strong></td>
+                    <td>
+                        <select class="selectEstado" data-id="${tarea.id}">
+                            <option value="No lista" ${tarea.status === 'No lista' ? 'selected' : ''}>No lista</option>
+                            <option value="En proceso" ${tarea.status === 'En proceso' ? 'selected' : ''}>En proceso</option>
+                            <option value="Terminada" ${tarea.status === 'Terminada' ? 'selected' : ''}>Terminada</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="btnEditar" data-id="${tarea.id}">Editar</button>
+                        <button class="btnAccion" data-id="${tarea.id}">Eliminar</button>
+                    </td>
+                `;
         const selectEstado = fila.querySelector('.selectEstado');
         selectEstado.onchange = () => actualizarEstadoTarea(tarea.id, selectEstado.value);
         const btnEdit = fila.querySelector('.btnEditar');
@@ -96,6 +99,9 @@ async function prepararEdicion(tarea) {
     const nuevaDescripcion = prompt("Editar descripción:", tarea.description);
     if (nuevaDescripcion === null)
         return;
+    const nuevaFecha = prompt("Editar fecha límite (AAAA-MM-DD):", tarea.limit_date ? tarea.limit_date.split('T')[0] : "");
+    if (nuevaFecha === null)
+        return;
     try {
         const response = await fetch(`/api/tasks/`, {
             method: 'PUT',
@@ -106,7 +112,8 @@ async function prepararEdicion(tarea) {
             body: JSON.stringify({
                 id: tarea.id,
                 title: nuevoTitulo,
-                description: nuevaDescripcion
+                description: nuevaDescripcion,
+                limit_date: nuevaFecha
             })
         });
         if (response.ok) {
@@ -126,6 +133,7 @@ async function prepararEdicion(tarea) {
 nuevaTareabtn.addEventListener('click', async () => {
     const title = prompt("Título de la nueva tarea:");
     const description = prompt("Descripción de la tarea:");
+    const limit_date = prompt("Fecha límite (AAAA-MM-DD):");
     if (!title)
         return; //Si no se registra información nueva, retorna//
     try {
@@ -139,7 +147,8 @@ nuevaTareabtn.addEventListener('click', async () => {
             body: JSON.stringify({
                 title: title,
                 description: description,
-                user_id: userId //El id de usuario que se envía al iniciar sesión y que se guarda en el localStorage//
+                user_id: userId, //El id de usuario que se envía al iniciar sesión y que se guarda en el localStorage//
+                limit_date: limit_date
             })
         });
         //Actualiza la vista de las tareas con la nueva que se agrega trayendo los datos de la tabla tasks//
@@ -163,7 +172,7 @@ btnCerrarSesion?.addEventListener('click', () => {
     window.location.href = 'login.html';
 });
 function manejarSesionExpirada() {
-    alert("Tu sesión ha expirado (1 hora).");
+    alert("Tu sesión ha expirado (1 hora) Serás redireccionado al inicio.");
     localStorage.clear();
     window.location.href = 'login.html';
 }
