@@ -54,6 +54,9 @@ app.get('/registro', (req, res) => {
     res.sendFile(path.join(publicPath, 'registro.html'));
 });
 
+app.get('/', (req: Request, res: Response) => {  //Redirige / al login//
+    res.redirect('/login');
+});
 
 
 app.get('/', (req: Request, res: Response) => {     //Enpoint de prueba para encender la API en local//
