@@ -39,6 +39,10 @@ Fecha 30/03/2026
 *Actualización de la documentación de Swagger y JSDoc
 *Creación de peticiones HTTP para la gestión de las tareas
 
+Fecha 31/03/2026
+*Instalación de dependencia rimraf para hacer el comando "docs" (perteneciente a la herramiena de documentación JSDoc) compatible con Windows, Linux y Mac
+*Problemas con el deploy al intentar incluir la documentación
+*
 
 
 

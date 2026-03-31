@@ -30,7 +30,7 @@ const swaggerOptions: swaggerJSDoc.Options = {
         }
     },
     //Se le indica a Swagger donde se encuentran los comentarios de los cuales tiene que hacer la documentación//
-    apis: ['./src/api/routes/*.ts', './src/controllers/*.ts'], 
+    apis: ['./src/api/routes/*.ts', './src/controllers/*.ts', './dist/api/routes/*.js'], 
 };
 
 export const swaggerDocs = swaggerJSDoc(swaggerOptions);

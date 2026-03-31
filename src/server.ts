@@ -63,6 +63,12 @@ app.get('/tareas', (req: Request, res: Response)=>{
     res.sendFile(path.join(__dirname, '../web/tareas.html'));
 })
 
+const docsPath = path.resolve(__dirname, '../docs');
+app.use('/docs', express.static(docsPath));
+
+app.get('/documentacion', (req, res) => {
+    res.sendFile(path.join(docsPath, 'index.html'));
+});
 
 
 app.listen(PORT,'0.0.0.0', async () =>{
